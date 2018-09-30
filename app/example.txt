@@ -1,0 +1,37 @@
+{
+  'problemStats': {
+    'solved': {
+      'Practice Problems': ['ERROR', 'FLOW009']
+    }
+  },
+  'rankings': {
+    'all': {
+      'country': 28164,
+      'global': 36985
+    },
+    'cookoff': {
+      'country': 0,
+      'global': 0
+    },
+    'long': {
+      'country': 25100,
+      'global': 32088
+    },
+    'ltime': {
+      'country': 0,
+      'global': 0
+    }
+  },
+  'ratings': {
+    'all': 1536,
+    'cookoff': 0,
+    'long': 1536,
+    'ltime': 0
+  },
+  'user_details': {
+    'country': 'India',
+    'fullname': 'Karan Sheth',
+    'organization': 'K. J. Somaiya College of Engineering Vidyanagar, Vidyavihar, Mumbai',
+    'username': 'korusuke'
+  }
+}

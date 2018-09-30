@@ -1,0 +1,244 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    
+<div class="navbar white-text" style="z-index: 99;">
+    <div class ="left slidetrigdiv">
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+    <a class="right-align right" href="#">{{data["user_details"]["username"]}}</a>
+    
+</div> 
+
+<ul id="slide-out" class="sidenav grey darken-4 white-text">
+        <li><div class="user-view">
+                <a href="#name"><span class="white-text name">John Doe</span></a>
+                <a href="#email"><span class="white-text email">1850</span></a>
+        </div></li>
+        <li><div class = "side-option waves-effect waves-light" id = "ssdash" onclick="dash()"><i class="fas fa-tachometer-alt"></i>&nbsp; Dashboard</div></li>
+        <li><div class = "side-option waves-effect waves-light" id = "ssfeed" onclick="feed()"><i class="far fa-newspaper"></i>&nbsp; Feed</div></li>
+        <li><div class = "side-option waves-effect waves-light" id = "ssfriends" onclick="friend()"><i class="fas fa-user-friends"></i>&nbsp;Friends</div></li>
+</ul>
+
+<div class = "upper-container">
+        <div class = "menubar" style="z-index :30;">
+                        <div style="min-height: 15px;"></div>
+                        <input type="radio" id="dashbut" name="dandb" onclick="dash()" checked/>
+                        <label for="dashbut" class="selector tooltipped" data-position="right" data-tooltip="Dash"><i class="fas fa-tachometer-alt"></i></label>
+                
+                <input type="radio" id="feedbut" onclick="feed()" name="dandb"/>
+                <label for="feedbut" class="selector tooltipped" data-position="right" data-tooltip="Feed"><i class="far fa-newspaper"></i></label>
+                <input type="radio" id="friendbut" onclick="friend()" name="dandb"/>
+                <label for="friendbut" class="selector tooltipped" data-position="right" data-tooltip="Friends"><i class="fas fa-user-friends"></i></label>
+
+        </div>
+        <div class = "everythingelse">
+        
+        <div class = "dashcontents">
+        <div class = "container">
+                <div class = "header">
+                        <h1 align = "center" >DASHBOARD</h1>
+                        <div class = "underline"></div>
+                </div>
+        </div>
+        <div id="container">
+
+                <div class="row">
+                  <div class="col s12 m6 l3 ">
+                    <div class="card-panel red">
+                        <h3 class="white-text">{{data["ratings"]["all"]}}</h3>
+                        <span class="white-text">Overall Rating</span>
+                    </div>
+                  </div>
+
+                  <div class="col s12 m6 l3 ">
+                    <div class="card-panel blue">
+                        <h3 class="white-text">{{data["ratings"]["long"]}}</h3>
+                        <span class="white-text">Long Rating</span>
+                    </div>
+                  </div>
+
+                  <div class="col s12 m6 l3 ">
+                    <div class="card-panel orange">
+                        <h3 class="white-text">{{data["ratings"]["cookoff"]}}</h3>
+                        <span class="white-text">Cook-off Rating</span>
+                    </div>
+                  </div>
+
+                  <div class="col s12 m6 l3 ">
+                    <div class="card-panel green">
+                        <h3 class="white-text">{{data["ratings"]["ltime"]}}</h3>
+                        <span class="white-text">Lunch-Time Rating</span>
+                    </div>
+                  </div>
+                </div>  
+
+
+                <div class="row">
+                  <div class="col s12 m9">
+                    <div class="card-panel orange white-text">
+                        <!--<span id = "contestLen" style="display:none;">{{contest_list|length}}</span>-->
+                        <span class="white-text" id="ongoingContestTitle" data-countcontest="{{contest_list|length}}"><h4>Ongoing Contests</h4> <br/></span>
+                        {% for e in contest_list %}
+                                <span id = "contest{{loop.index0}}" data-endtime="{{e.1}}"><b>{{e.0}}</b></span> <!-- <span id="contest{{loop.index0}}" style="display:none;">{{e.1}}</span>--><span id="contest{{loop.index0}}out" ></span><br/>
+                        {% endfor %}
+                    </div>
+                  </div>
+
+                  <div class="col s12 m3">
+                    <div class="card-panel blue">
+                        <span class="white-text">TODO <br> to be done by karan</span>
+                    </div>
+                  </div>
+                </div>
+
+
+
+                <div class="row">
+                  <div class="col s12 m9">
+                    {% include '_friend.html' %}
+                  </div>
+
+                  <div class="col s12 m3">
+                    <div class="card-panel blue">
+                        <span class="white-text">Problems <br> To be done by rushang</span>
+                    </div>
+                  </div>
+                  <div class="col s12 m3">
+                    <div class="card-panel grey">
+                        <span class="white-text">Console <br> To be done by Rushang</span>
+                    </div>
+                  </div>
+                </div>
+                
+        </div>
+        
+        </div>
+        <div id="feed-container">
+                <div class = "container">
+                         <div class = "header">
+                            <h1 align = "center" >FEED</h1>
+                                 <div class = "underline"></div>
+                         </div>
+
+                         <div>
+                        {% for item in data["problemStats"]["solved"]["Practice Problems"] %}
+                                <li>
+                                        <h2>{{ item }}<h2>
+                                        
+                                </li>
+                        {% endfor %}
+                         </div>
+
+                </div>       
+        </div>
+
+        <div id="friend-container">
+                <div class = "container">
+                         <div class = "header">
+                            <h1 align = "center" >My Friends</h1>
+                                 <div class = "underline"></div>
+                         </div>
+
+                </div>
+
+                <div class="search-input">
+                        <input id="search-friends" placeholder="Search" >
+                </div>
+                <div id = "friendlist">
+                <!-- idhar for loop laga , done-->
+
+                        {% for key,friend in friends.items() %}
+                                {% include '_usercard.html' %}
+                        {% endfor %}
+                        
+
+                </div>
+                
+                <div class="bigplus  teal darken-3">
+                        <a class="btn-floating btn-large waves-effect waves-light teal darken-4 modal-trigger" href="#modal1"><i class="material-icons">add</i></a>
+                </div>
+                            
+                <!-- Modal Structure -->
+                <div id="modal1" class="modal">
+                        
+                        <div class="modal-content">
+                                <h4>Add Friend</h4>
+                                <p>Enter the exact username of the user to add.</p>
+                                <input placeholder="username" name="add_new_fr" id = "input_friend" validate>
+                                <div class="white-text" style="padding:5px; display:none;" id="modalFsInfo">
+                                        
+                                </div>
+                        </div>
+                        
+                        <div class="modal-footer">
+                                <!--<input class="modal-close waves-effect waves-green btn-flat addfriend"  value="Add">-->
+                                <a class="waves-effect waves-green btn-flat addfriend"><i class="material-icons">add</i></a>
+                        </div>
+
+                        
+
+                </div>
+
+
+                <div id="snackbar">Friend Added Successfully</div> 
+        </div>
+        
+        <script>
+               $(document).ready(function(){
+                        $('.tooltipped').tooltip({delay: 0});
+                        $('.modal').modal();
+                        $('.sidenav').sidenav();
+                        document.getElementById('ssdash').style.backgroundColor="#555";
+                        
+                });
+
+                
+
+                function feed()
+                {
+                        document.getElementsByClassName('dashcontents')[0].style.display="none";
+                        document.getElementById('friend-container').style.display="none";
+                        document.getElementById('feed-container').style.display="block";
+                        document.getElementById('feed-container').style.top = "0px";
+                        $('.sidenav').sidenav('close');
+                        document.getElementById('ssdash').style.backgroundColor="#212121";
+                        document.getElementById('ssfriends').style.backgroundColor="#212121";
+                        document.getElementById('ssfeed').style.backgroundColor="#555";
+                       // document.getElementById('feed-container').style.left = "50px";
+                        
+
+                }
+
+                function dash()
+                {
+                        document.getElementById('feed-container').style.display = "none";
+                        document.getElementById('friend-container').style.display = "none";
+                        document.getElementsByClassName('dashcontents')[0].style.display="block";
+                        $('.sidenav').sidenav('close');
+                        document.getElementById('ssfeed').style.backgroundColor="#212121";
+                        document.getElementById('ssfriends').style.backgroundColor="#212121";
+                        document.getElementById('ssdash').style.backgroundColor="#555";
+                        //document.getElementById('feed-container').style.display="block";
+
+                }
+
+                function friend()
+                {
+                        document.getElementById('feed-container').style.display = "none";
+                        document.getElementsByClassName('dashcontents')[0].style.display="none";
+                        document.getElementById('friend-container').style.display = "block";
+                        document.getElementById('ssdash').style.backgroundColor="#212121";
+                        document.getElementById('ssfeed').style.backgroundColor="#212121";
+                        document.getElementById('ssfriends').style.backgroundColor="#555";
+                        $('.sidenav').sidenav('close');
+                }
+        </script>
+        </div>
+                
+        </div>
+</div>
+<script src="{{ url_for('static', filename='test.js') }}"></script>
+{% endblock %}
+            

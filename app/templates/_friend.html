@@ -1,0 +1,36 @@
+<div id="friendc" class="card">
+                <div class = "container">
+                         <div class = "header">
+                            <h2 align = "center" >My Friends</h2>
+                                 <div class = "underline"></div>
+                         </div>
+
+                </div>
+
+                <div class="search-input">
+                        <input id="search-friends" placeholder="Search" >
+                </div>
+                <div id = "friendlist_dash">
+
+
+
+                    <table class="striped">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>UserName</th>
+                            <th>Rating</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for key,friend in friends.items() %}
+                                {% include '_frdash.html' %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+            
+
+                </div>
+                
+        </div>
