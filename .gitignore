@@ -1,0 +1,10 @@
+app/__pycache__/
+venv/
+__pycache__/
+app/__pycache__/func.cpython-36.pyc
+app/__pycache__/auth.cpython-36.pyc
+app/__pycache__/__init__.cpython-36.pyc
+app/__pycache__/auth.cpython-36.pyc
+app/__pycache__/dashboard.cpython-36.pyc
+app/__pycache__/mongo.cpython-36.pyc
+app/__pycache__/routes.cpython-36.pyc

@@ -1,0 +1,11 @@
+https://api.codechef.com/oauth/authorize?response_type=code&client_id=746ef7e3cf85a2fd39fda7f32a6e6422&state=xyz&redirect_uri=https://developers.codechef.com/authorize/redirect
+
+1994d7350fa3912323f7601edeb72975d0d8fef5
+313519c0a9b3efc1defcaba4b18c392faa2cef7a
+
+CLIENT_ID = "746ef7e3cf85a2fd39fda7f32a6e6422" # Fill this in with your client ID
+CLIENT_SECRET = "d650035ea876e875f97bdb00d5949253" # Fill this in with your client secret
+REDIRECT_URI = "http://localhost:5000/codechef_redirect"
+
+
+curl -X POST http://api.codechef.com/oauth/token -H 'content-Type: application/json' -d '{"grant_type": "authorization_code","code": code,"client_id":"746ef7e3cf85a2fd39fda7f32a6e6422","client_secret":"d650035ea876e875f97bdb00d5949253","redirect_uri":"http://localhost:5000/codechef_redirect"}'
